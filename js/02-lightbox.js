@@ -24,10 +24,10 @@ const fixedGalleryItems = galleryItems
 
 gallery.insertAdjacentHTML("afterbegin", fixedGalleryItems);
 // ============================================================
-var images = document.querySelectorAll(".gallery img");
-images.forEach(function (image) {
-  image.addEventListener("click", function (event) {
-    event.preventDefault();
-    const lightbox = new SimpleLightbox(".gallery a", {});
-  });
+const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionType: "attr",
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 100,
 });
