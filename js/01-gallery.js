@@ -6,7 +6,7 @@ const gallery = document.querySelector(".gallery");
 const fixedGalleryItems = galleryItems
   .map(
     (galleryItem) =>
-      `<li class="gallery__item">
+      `<div class="gallery__item">
       <a class="gallery__link" href="${galleryItem.original}">
       <img
         class="gallery__image"
@@ -16,7 +16,7 @@ const fixedGalleryItems = galleryItems
         >
         </img>
         </a>
-     </li>`
+     </div>`
   )
   .join("");
 
