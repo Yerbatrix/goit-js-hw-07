@@ -29,17 +29,13 @@ gallery.addEventListener("click", (event) => {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const lightbox = basicLightbox.create(`
+  const lightbox = basicLightbox.create(
+    `
     <img src="${event.target.dataset.source}" width="800" height="600">
-  `);
+  `
+  );
 
   lightbox.show();
-});
-
-document.body.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    basicLightbox.close();
-  }
 });
 
 console.log(galleryItems);
