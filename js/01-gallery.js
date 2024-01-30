@@ -24,18 +24,26 @@ gallery.insertAdjacentHTML("afterbegin", fixedGalleryItems);
 
 // ===========================================================================
 
-gallery.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  const lightbox = basicLightbox.create(
-    `
-    <img src="${event.target.dataset.source}" width="800" height="600">
-  `
-  );
-
-  lightbox.show();
+const lightbox = basicLightbox.create(`<img src="" />`, {
+  onShow: () => window.addEventListener("keydown", escape),
+  onClose: () => window.removeEventListener("keydown", escape),
 });
+
+function showLightbox(event) {
+  event.preventDefault();
+  const src = event.target.dataset.source;
+
+  if (!src) return;
+
+  lightbox.element().querySelector("img").src = src;
+  lightbox.show();
+}
+
+gallery.addEventListener("click", showLightbox);
+
+function escape(event) {
+  if (event.key !== "Escape") return;
+  lightbox.close();
+}
 
 console.log(galleryItems);
